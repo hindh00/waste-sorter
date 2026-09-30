@@ -1,0 +1,25 @@
+# config.yaml
+#
+# Runtime/app configuration — how the app runs, as opposed to rules.yaml,
+# which is what the app decides about an item. Keeping these separate means
+# "which model file to load" never gets tangled up with "which bin does a
+# can go in."
+
+model:
+  weights_path: "weights/best.pt"
+  image_size: 224
+
+rules_path: "rules.yaml"
+category_map_path: "data/category_map.yaml"
+fallback_log_path: "logs/fallback_log.csv"
+
+llm:
+  # Set to false to fully disable the AI fallback — low-confidence or
+  # unrecognized items then just get an "I'm not sure" result instead of
+  # being sent to Claude. No ANTHROPIC_API_KEY is needed when this is false.
+  enabled: false
+  # Fast/cheap tier — this path should be the exception, not the rule.
+  # Confirm this is still a valid current model id before relying on it;
+  # swap to a stronger model if ambiguous items need more careful reasoning.
+  model: "claude-haiku-4-5-20251001"
+  max_tokens: 512

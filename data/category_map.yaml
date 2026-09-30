@@ -1,0 +1,102 @@
+# category_map.yaml
+#
+# Maps TACO's fine-grained annotation labels (60 categories) down to the
+# small, practical category set this app actually uses (see rules.yaml).
+# This is data, not code, deliberately: scripts/prepare_dataset.py reads
+# this file, so adding/renaming a category later is a YAML edit here plus
+# a matching entry in rules.yaml — never a change to prepare_dataset.py
+# itself.
+#
+# Any TACO label NOT listed here is treated as "other_unlabeled" by
+# prepare_dataset.py (with a warning printed), so a future TACO version
+# adding new labels doesn't hard-fail the pipeline.
+#
+# Source label spelling follows TACO's own annotations.json / category
+# list (https://github.com/pedropro/TACO). Double check exact spelling
+# against your downloaded annotations.json if prepare_dataset.py reports
+# unmapped labels — TACO's label strings must match exactly (case and
+# punctuation) for the lookup to hit.
+
+can:
+  - "Aerosol"
+  - "Aluminium foil"
+  - "Metal bottle cap"
+  - "Drink can"
+  - "Food Can"
+  - "Metal lid"
+  - "Pop tab"
+  - "Scrap metal"
+
+bottle_plastic:
+  - "Clear plastic bottle"
+  - "Other plastic bottle"
+
+bottle_glass:
+  - "Glass bottle"
+  - "Broken glass"
+  - "Glass cup"
+  - "Glass jar"
+
+carton_paper:
+  - "Corrugated carton"
+  - "Drink carton"
+  - "Egg carton"
+  - "Meal carton"
+  - "Other carton"
+  - "Paper cup"
+  - "Magazine paper"
+  - "Wrapping paper"
+  - "Normal paper"
+  - "Paper bag"
+  - "Pizza box"
+  - "Paper straw"
+  - "Toilet tube"
+
+plastic_packaging:
+  - "Aluminium blister pack"
+  - "Carded blister pack"
+  - "Plastic bottle cap"
+  - "Disposable plastic cup"
+  - "Foam cup"
+  - "Other plastic cup"
+  - "Plastic lid"
+  - "Plastified paper bag"
+  - "Garbage bag"
+  - "Single-use carrier bag"
+  - "Polypropylene bag"
+  - "Produce bag"
+  - "Cereal bag"
+  - "Bread bag"
+  - "Plastic film"
+  - "Crisp packet"
+  - "Other plastic wrapper"
+  - "Retort pouch"
+  - "Spread tub"
+  - "Tupperware"
+  - "Disposable food container"
+  - "Foam food container"
+  - "Other plastic container"
+  - "Plastic glooves"
+  - "Plastic utensils"
+  - "Six pack rings"
+  - "Squeezable tube"
+  - "Plastic straw"
+  - "Styrofoam piece"
+  - "Other plastic"
+
+cigarette:
+  - "Cigarette"
+
+food_organic_waste:
+  - "Food waste"
+
+battery_hazardous:
+  - "Battery"
+
+textile_other:
+  - "Rope & strings"
+  - "Shoe"
+
+other_unlabeled:
+  - "Tissues"
+  - "Unlabeled litter"

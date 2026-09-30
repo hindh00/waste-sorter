@@ -1,0 +1,33 @@
+# category_map_realwaste.yaml
+#
+# Maps the RealWaste dataset's (https://github.com/sam-single/realwaste)
+# folder names down to this project's consolidated category set (see
+# rules.yaml and data/category_map.yaml, which does the same job for
+# TACO). Same shape, read by scripts/prepare_imagefolder_dataset.py.
+#
+# Note on "Plastic": same caveat as garbage_classification — this dataset
+# doesn't distinguish bottles from other rigid plastic, so it's routed to
+# plastic_packaging (same bin as bottle_plastic in rules.yaml either way).
+
+carton_paper:
+  - "Cardboard"
+  - "Paper"
+
+food_organic_waste:
+  - "Food Organics"
+  - "Vegetation"
+
+bottle_glass:
+  - "Glass"
+
+can:
+  - "Metal"
+
+other_unlabeled:
+  - "Miscellaneous Trash"
+
+plastic_packaging:
+  - "Plastic"
+
+textile_other:
+  - "Textile Trash"

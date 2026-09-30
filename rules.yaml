@@ -1,0 +1,92 @@
+# rules.yaml
+#
+# Human-editable source of truth for "what do we do with this item."
+# The model's only job is predicting a category name; this file (and only
+# this file) decides which bin that maps to and what prep steps apply.
+# Retargeting the app to a different city's recycling program should mean
+# editing this file, never retraining or touching Python.
+#
+# Bin names and steps below follow the City of Ottawa's curbside collection
+# program (ottawa.ca/en/garbage-and-recycling): Black bin (garbage), Black
+# bin (recycling — paper/cardboard/boxboard), Blue bin (plastics #1-7,
+# glass, metal, cartons), and Green bin (food waste and food-soiled paper).
+# Batteries and other hazardous/e-waste are not curbside items in Ottawa —
+# they require drop-off at a Household Hazardous Waste depot or a retailer
+# take-back program. Re-check ottawa.ca before relying on this for real
+# sorting, since municipal programs change.
+
+# Below this confidence, the local classifier's answer is not trusted and
+# the app calls the LLM fallback instead. This is a placeholder — tune it
+# empirically once you can see real fallback-vs-correct rates on your own
+# validation data and your own test photos. Don't just guess a number.
+confidence_threshold: 0.65
+
+categories:
+  can:
+    bin: "Blue Bin (Recycling)"
+    steps:
+      - "Empty any remaining liquid or food."
+      - "Rinse briefly if food residue remains."
+      - "Empty aerosol cans fully before recycling; do not puncture."
+      - "Crush if convenient to save space (optional)."
+
+  bottle_plastic:
+    bin: "Blue Bin (Recycling)"
+    steps:
+      - "Empty and rinse the bottle."
+      - "Caps can stay on — Ottawa's blue bin accepts them attached."
+      - "Flatten to save space (optional)."
+
+  bottle_glass:
+    bin: "Blue Bin (Recycling)"
+    steps:
+      - "Empty and rinse."
+      - "Lids/caps can stay on or be recycled loose in the blue bin."
+      - "Broken glass: wrap it (e.g. in paper) and place in the black bin (garbage) for safety instead."
+
+  carton_paper:
+    bin: "Black Bin (Recycling) or Blue Bin"
+    steps:
+      - "Flatten boxes and cartons."
+      - "Clean, dry paper and boxboard (cereal boxes, flyers, office paper) go in the black recycling bin."
+      - "Drink/milk cartons and Tetra Pak-style containers go in the blue bin, not the black one."
+      - "Food-soiled paper (e.g. a greasy pizza box) is NOT recyclable here — put it in the green bin (organics) instead."
+
+  plastic_packaging:
+    bin: "Blue Bin (Recycling)"
+    steps:
+      - "Empty of contents; a light rinse is fine, it doesn't need to be spotless."
+      - "Ottawa's blue bin accepts most rigid plastics #1-7, but plastic bags and film are NOT accepted curbside."
+      - "Take plastic bags, wrap, and film to a grocery store drop-off instead."
+      - "Do not use this item to bag other recyclables — put items in loose."
+
+  cigarette:
+    bin: "Black Bin (Garbage)"
+    steps:
+      - "Make sure it's fully extinguished before disposing of it."
+      - "Never place in the recycling or green bin (fire risk and contamination)."
+
+  food_organic_waste:
+    bin: "Green Bin (Organics)"
+    steps:
+      - "Remove any non-organic packaging first."
+      - "Loose food scraps can go directly in the green bin; a compostable or paper liner is fine, plastic bags are not."
+
+  battery_hazardous:
+    bin: "Hazardous Waste / Take-Back Depot (not curbside)"
+    steps:
+      - "Do NOT place in the black, blue, or green bin — this is not a curbside item in Ottawa."
+      - "Tape the terminals if it's a lithium or button battery, to prevent short-circuiting."
+      - "Drop off at an Ottawa Household Hazardous Waste depot, or a retailer battery take-back bin (many hardware/electronics stores)."
+
+  textile_other:
+    bin: "Textile Donation / Drop-off (not curbside)"
+    steps:
+      - "Ottawa's black/blue/green bins do not accept textiles or shoes."
+      - "If it's still wearable, donate it (e.g. Diabetes Canada clothing bins, thrift stores)."
+      - "If it's not wearable, look for a textile recycling drop-off point rather than the garbage bin."
+
+  other_unlabeled:
+    bin: "Black Bin (Garbage)"
+    steps:
+      - "Could not confidently categorize this item — when in doubt, check ottawa.ca's 'What Goes Where' tool."

@@ -1,0 +1,24 @@
+# Data & model artifacts (large, regenerable — don't commit)
+data/raw_taco/
+data/realwaste/
+data/garbage_classification/
+data/classification/
+weights/*.pt
+runs/
+
+# Runtime files
+logs/*.csv
+logs/fallback_images/
+
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# OS
+.DS_Store

@@ -1,0 +1,44 @@
+# category_map_garbage_classification.yaml
+#
+# Maps the Kaggle "Garbage Classification" (12-class) dataset's folder
+# names down to this project's consolidated category set (see rules.yaml
+# and data/category_map.yaml, which does the same job for TACO).
+#
+# Same shape as data/category_map.yaml ({category: [source folder names]}),
+# read by scripts/prepare_imagefolder_dataset.py. Source folder names must
+# match the extracted dataset's directory names exactly.
+#
+# Note on "plastic": this dataset doesn't distinguish bottles from other
+# rigid plastic packaging, so generic plastic images are routed to
+# plastic_packaging rather than bottle_plastic. In rules.yaml both map to
+# the same bin (Blue Bin) so this doesn't affect disposal advice, but it
+# does mean bottle_plastic gets no examples from this source — it stays
+# TACO-only. Revisit if bottle_plastic accuracy is weak after training.
+
+can:
+  - "metal"
+
+bottle_glass:
+  - "brown-glass"
+  - "green-glass"
+  - "white-glass"
+
+carton_paper:
+  - "cardboard"
+  - "paper"
+
+plastic_packaging:
+  - "plastic"
+
+food_organic_waste:
+  - "biological"
+
+battery_hazardous:
+  - "battery"
+
+textile_other:
+  - "clothes"
+  - "shoes"
+
+other_unlabeled:
+  - "trash"

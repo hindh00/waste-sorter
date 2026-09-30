@@ -1,0 +1,16 @@
+# Install PyTorch/Ultralytics-compatible Python FIRST — see README.md.
+# This machine's system Python (3.14) is too new for current PyTorch
+# wheels; use a 3.11 or 3.12 virtualenv before installing these.
+
+ultralytics>=8.1
+torch
+torchvision
+streamlit>=1.32
+anthropic>=0.34
+pycocotools
+pyyaml
+pillow
+pandas
+scikit-learn
+python-dotenv
+pytest
