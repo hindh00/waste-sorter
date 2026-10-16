@@ -4,6 +4,7 @@ data/realwaste/
 data/garbage_classification/
 data/classification/
 weights/*.pt
+!weights/best.pt
 runs/
 
 # Runtime files
